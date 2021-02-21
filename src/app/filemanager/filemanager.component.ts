@@ -8,10 +8,21 @@ import { FiledataService } from "../filedata.service";
 })
 export class FilemanagerComponent implements OnInit {
   fileArray = [];
+  folderInArray: [];
   constructor(private filedataservice: FiledataService) {}
 
   ngOnInit() {
     this.fileArray = this.filedataservice.getData();
-    console.log("........", this.fileArray);
+    console.log("........", JSON.stringify(this.fileArray));
+
+    this.displayArrayData();
+  }
+  displayArrayData() {
+    this.fileArray.map(data => {
+      if (data.name == "Folder 1") {
+        this.folderInArray = data.files;
+        console.log("........", JSON.stringify(this.folderInArray));
+      }
+    });
   }
 }
